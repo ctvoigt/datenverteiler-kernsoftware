@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<title>ArchiveRequestManager xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../apidocs/de/bsvrz/dav/daf/main/archive/ArchiveRequestManager.html">View Javadoc</a></div><pre>
+
+<a class="jxr_linenumber" name="1" href="#1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="2" href="#2">2</a>   <em class="jxr_comment"> * Copyright 2007 by Kappich Systemberatung, Aachen</em>
+<a class="jxr_linenumber" name="3" href="#3">3</a>   <em class="jxr_comment"> * Copyright 2005 by Kappich+Kniß Systemberatung Aachen (K2S)</em>
+<a class="jxr_linenumber" name="4" href="#4">4</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="5" href="#5">5</a>   <em class="jxr_comment"> * This file is part of de.bsvrz.dav.daf.</em>
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="7" href="#7">7</a>   <em class="jxr_comment"> * de.bsvrz.dav.daf is free software; you can redistribute it and/or modify</em>
+<a class="jxr_linenumber" name="8" href="#8">8</a>   <em class="jxr_comment"> * it under the terms of the GNU Lesser General Public License as published by</em>
+<a class="jxr_linenumber" name="9" href="#9">9</a>   <em class="jxr_comment"> * the Free Software Foundation; either version 2.1 of the License, or</em>
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <em class="jxr_comment"> * (at your option) any later version.</em>
+<a class="jxr_linenumber" name="11" href="#11">11</a>  <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="12" href="#12">12</a>  <em class="jxr_comment"> * de.bsvrz.dav.daf is distributed in the hope that it will be useful,</em>
+<a class="jxr_linenumber" name="13" href="#13">13</a>  <em class="jxr_comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <em class="jxr_comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a class="jxr_linenumber" name="15" href="#15">15</a>  <em class="jxr_comment"> * GNU Lesser General Public License for more details.</em>
+<a class="jxr_linenumber" name="16" href="#16">16</a>  <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="17" href="#17">17</a>  <em class="jxr_comment"> * You should have received a copy of the GNU Lesser General Public License</em>
+<a class="jxr_linenumber" name="18" href="#18">18</a>  <em class="jxr_comment"> * along with de.bsvrz.dav.daf; if not, write to the Free Software</em>
+<a class="jxr_linenumber" name="19" href="#19">19</a>  <em class="jxr_comment"> * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA</em>
+<a class="jxr_linenumber" name="20" href="#20">20</a>  <em class="jxr_comment"> */</em>
+<a class="jxr_linenumber" name="21" href="#21">21</a>  
+<a class="jxr_linenumber" name="22" href="#22">22</a>  <strong class="jxr_keyword">package</strong> de.bsvrz.dav.daf.main.archive;
+<a class="jxr_linenumber" name="23" href="#23">23</a>  
+<a class="jxr_linenumber" name="24" href="#24">24</a>  <strong class="jxr_keyword">import</strong> de.bsvrz.dav.daf.main.DataDescription;
+<a class="jxr_linenumber" name="25" href="#25">25</a>  <strong class="jxr_keyword">import</strong> de.bsvrz.dav.daf.main.ReceiveOptions;
+<a class="jxr_linenumber" name="26" href="#26">26</a>  <strong class="jxr_keyword">import</strong> de.bsvrz.dav.daf.main.config.SystemObject;
+<a class="jxr_linenumber" name="27" href="#27">27</a>  
+<a class="jxr_linenumber" name="28" href="#28">28</a>  <strong class="jxr_keyword">import</strong> java.util.*;
+<a class="jxr_linenumber" name="29" href="#29">29</a>  
+<a class="jxr_linenumber" name="30" href="#30">30</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="31" href="#31">31</a>  <em class="jxr_javadoccomment"> * Schnittstelle, die von Applikationen benutzt wird, um Anfragen an ein Archivsystem zu stellen. Eine konkrete Implementierung wird von den</em>
+<a class="jxr_linenumber" name="32" href="#32">32</a>  <em class="jxr_javadoccomment"> * Datenverteiler-Applikationsfunktionen nach erfolgreichem Verbindungsaufbau zum Datenverteiler über die Methode {@link</em>
+<a class="jxr_linenumber" name="33" href="#33">33</a>  <em class="jxr_javadoccomment"> * de.bsvrz.dav.daf.main.ClientDavInterface#getArchive} zur Verfügung gestellt.</em>
+<a class="jxr_linenumber" name="34" href="#34">34</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="35" href="#35">35</a>  <em class="jxr_javadoccomment"> * @author Kappich Systemberatung</em>
+<a class="jxr_linenumber" name="36" href="#36">36</a>  <em class="jxr_javadoccomment"> * @version $Revision: 6831 $</em>
+<a class="jxr_linenumber" name="37" href="#37">37</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="38" href="#38">38</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">interface</strong> <a href="../../../../../../de/bsvrz/dav/daf/main/archive/ArchiveRequestManager.html">ArchiveRequestManager</a> {
+<a class="jxr_linenumber" name="39" href="#39">39</a>  
+<a class="jxr_linenumber" name="40" href="#40">40</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="41" href="#41">41</a>  <em class="jxr_javadoccomment">	 * Spezifiziert die Größe des Empfangspuffers je Archivanfrage, die mit nachfolgenden &lt;code&gt;request&lt;/code&gt; Aufrufen erzeugt werden. Der angegebene Parameter</em>
+<a class="jxr_linenumber" name="42" href="#42">42</a>  <em class="jxr_javadoccomment">	 * ist eine grobe Vorgabe für alle Streams einer Archivanfrage zusammen und muss von einer Implementierung nicht exakt berücksichtigt werden, sondern sollte in</em>
+<a class="jxr_linenumber" name="43" href="#43">43</a>  <em class="jxr_javadoccomment">	 * der sendeseitigen Blockbildung und in der Flusskontrolle so berücksichtigt werden, dass die Summe der vom Archivsystem gesendeten aber noch nicht von der</em>
+<a class="jxr_linenumber" name="44" href="#44">44</a>  <em class="jxr_javadoccomment">	 * anfragenden Applikation abgerufenen Bytes in der angegebenen Größenordnung liegt. Der Defaultwert ist 0 mit der Bedeutung, das die Größe durch einen</em>
+<a class="jxr_linenumber" name="45" href="#45">45</a>  <em class="jxr_javadoccomment">	 * entsprechenden Parameter des Archivsystems festgelegt wird.</em>
+<a class="jxr_linenumber" name="46" href="#46">46</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="47" href="#47">47</a>  <em class="jxr_javadoccomment">	 * @param numberOfBytes Grobe Vorgabe bezüglich der Anzahl zu puffernden Bytes pro Archivanfrage oder 0, wenn keine Vorgabe seitens der Empfangsapplikation</em>
+<a class="jxr_linenumber" name="48" href="#48">48</a>  <em class="jxr_javadoccomment">	 *                      gemacht werden soll und statt dessen ein entsprechender Parameter des Archivsystems verwendet werden soll.</em>
+<a class="jxr_linenumber" name="49" href="#49">49</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="50" href="#50">50</a>  	<strong class="jxr_keyword">void</strong> setReceiveBufferSize(<strong class="jxr_keyword">int</strong> numberOfBytes);
+<a class="jxr_linenumber" name="51" href="#51">51</a>  
+<a class="jxr_linenumber" name="52" href="#52">52</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="53" href="#53">53</a>  <em class="jxr_javadoccomment">	 * Ruft Archivdaten von einem Archivsystem mit Hilfe eines Ergebnisdatenstroms ab. Diese Methode wird von einer Applikation aufgerufen um Archivdaten von einem</em>
+<a class="jxr_linenumber" name="54" href="#54">54</a>  <em class="jxr_javadoccomment">	 * Archivsystem abzufragen. Eine Implementierung dieser Methode sollte ein Objekt zurückliefern über das asynchron auf das Ergebnis der Archivanfrage</em>
+<a class="jxr_linenumber" name="55" href="#55">55</a>  <em class="jxr_javadoccomment">	 * zugegriffen werden kann. Im Ergebnis wird für die im Parameter &lt;code&gt;spec&lt;/code&gt; spezifizierten Daten ein Stream von Ergebnisdatensätzen erwartet.</em>
+<a class="jxr_linenumber" name="56" href="#56">56</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="57" href="#57">57</a>  <em class="jxr_javadoccomment">	 * @param priority Priorität der Anfrage</em>
+<a class="jxr_linenumber" name="58" href="#58">58</a>  <em class="jxr_javadoccomment">	 * @param spec     Spezifikation der gewünschten Archivdaten</em>
+<a class="jxr_linenumber" name="59" href="#59">59</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="60" href="#60">60</a>  <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt über das asynchron auf die gewünschten Ergebnisdatensätze zugegriffen werden kann.</em>
+<a class="jxr_linenumber" name="61" href="#61">61</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="62" href="#62">62</a>  <em class="jxr_javadoccomment">	 * @throws IllegalStateException Das Archivsystem ist nicht erreichbar.</em>
+<a class="jxr_linenumber" name="63" href="#63">63</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="64" href="#64">64</a>  	ArchiveDataQueryResult request(<a href="../../../../../../de/bsvrz/dav/daf/main/archive/ArchiveQueryPriority.html">ArchiveQueryPriority</a> priority, <a href="../../../../../../de/bsvrz/dav/daf/main/archive/ArchiveDataSpecification.html">ArchiveDataSpecification</a> spec) <strong class="jxr_keyword">throws</strong> IllegalStateException;
+<a class="jxr_linenumber" name="65" href="#65">65</a>  
+<a class="jxr_linenumber" name="66" href="#66">66</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="67" href="#67">67</a>  <em class="jxr_javadoccomment">	 * Ruft Archivdaten von einem Archivsystem mit Hilfe mehrerer Ergebnisdatenströme ab. Diese Methode wird von einer Applikation aufgerufen um Archivdaten von</em>
+<a class="jxr_linenumber" name="68" href="#68">68</a>  <em class="jxr_javadoccomment">	 * einem Archivsystem abzufragen. Eine Implementierung dieser Methode sollte ein Objekt zurückliefern über das asynchron auf die Ergebnisse der Archivanfrage</em>
+<a class="jxr_linenumber" name="69" href="#69">69</a>  <em class="jxr_javadoccomment">	 * zugegriffen werden kann. Im Ergebnis wird für jede Archivdatenspezifikation in der übergebenen Liste &lt;code&gt;specs&lt;/code&gt; jeweils ein Stream von</em>
+<a class="jxr_linenumber" name="70" href="#70">70</a>  <em class="jxr_javadoccomment">	 * Ergebnisdatensätzen erwartet.</em>
+<a class="jxr_linenumber" name="71" href="#71">71</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="72" href="#72">72</a>  <em class="jxr_javadoccomment">	 * @param priority Priorität der Anfrage</em>
+<a class="jxr_linenumber" name="73" href="#73">73</a>  <em class="jxr_javadoccomment">	 * @param specs    Liste mit Spezifikationen der gewünschten Archivdaten</em>
+<a class="jxr_linenumber" name="74" href="#74">74</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="75" href="#75">75</a>  <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt über das asynchron auf die Ergebnisdatenströme mit den gewünschten Ergebnisdatensätzen zugegriffen werden kann.</em>
+<a class="jxr_linenumber" name="76" href="#76">76</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="77" href="#77">77</a>  <em class="jxr_javadoccomment">	 * @throws IllegalStateException Das Archivsystem ist nicht erreichbar.</em>
+<a class="jxr_linenumber" name="78" href="#78">78</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="79" href="#79">79</a>  	ArchiveDataQueryResult request(<a href="../../../../../../de/bsvrz/dav/daf/main/archive/ArchiveQueryPriority.html">ArchiveQueryPriority</a> priority, List&lt;ArchiveDataSpecification&gt; specs) <strong class="jxr_keyword">throws</strong> IllegalStateException;
+<a class="jxr_linenumber" name="80" href="#80">80</a>  
+<a class="jxr_linenumber" name="81" href="#81">81</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="82" href="#82">82</a>  <em class="jxr_javadoccomment">	 * Start einer Archivinformationsanfrage an das Archivsystem. Diese Methode wird von einer Applikation aufgerufen, um eine Archivinformationsanfrage an das</em>
+<a class="jxr_linenumber" name="83" href="#83">83</a>  <em class="jxr_javadoccomment">	 * Archivsystem zu starten. Eine Implementierung dieser Methode sollte ohne zu blockieren ein Objekt zurückliefern über das asynchron auf das Ergebnis der</em>
+<a class="jxr_linenumber" name="84" href="#84">84</a>  <em class="jxr_javadoccomment">	 * Anfrage zugegriffen werden kann.</em>
+<a class="jxr_linenumber" name="85" href="#85">85</a>  <em class="jxr_javadoccomment">	 * &lt;p/&gt;</em>
+<a class="jxr_linenumber" name="86" href="#86">86</a>  <em class="jxr_javadoccomment">	 * Das Ergebnisobjekt beinhaltet eine Liste von Objekten. Diese Objekte geben unter anderem ein Objekt vom Typ &lt;code&gt;ArchiveDataSpecification&lt;/code&gt; zurück.</em>
+<a class="jxr_linenumber" name="87" href="#87">87</a>  <em class="jxr_javadoccomment">	 * Dieses Objekt ist eine Referenz auf den Eingabeparameter &lt;code&gt;spec&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="88" href="#88">88</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="89" href="#89">89</a>  <em class="jxr_javadoccomment">	 * @param spec Spezifikation der Archivdaten zu denen Informationen gewünscht werden.</em>
+<a class="jxr_linenumber" name="90" href="#90">90</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="91" href="#91">91</a>  <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt über das asynchron auf die gewünschten Informationen zugegriffen werden kann.</em>
+<a class="jxr_linenumber" name="92" href="#92">92</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="93" href="#93">93</a>  <em class="jxr_javadoccomment">	 * @throws IllegalStateException Das Archivsystem ist nicht erreichbar.</em>
+<a class="jxr_linenumber" name="94" href="#94">94</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="95" href="#95">95</a>  	ArchiveInfoQueryResult requestInfo(<a href="../../../../../../de/bsvrz/dav/daf/main/archive/ArchiveDataSpecification.html">ArchiveDataSpecification</a> spec) <strong class="jxr_keyword">throws</strong> IllegalStateException;
+<a class="jxr_linenumber" name="96" href="#96">96</a>  
+<a class="jxr_linenumber" name="97" href="#97">97</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="98" href="#98">98</a>  <em class="jxr_javadoccomment">	 * Die Implementation dieser Methode meldet sich als Empfänger von aktuellen Daten an. Die zurückgegebenen Datensätze unterscheiden sich von einer "normalen"</em>
+<a class="jxr_linenumber" name="99" href="#99">99</a>  <em class="jxr_javadoccomment">	 * Anmeldung als Empfänger, da Archivdaten zeitlich vor die aktuellen Daten gemischt werden. Der Benutzer legt dabei fest wie gross der Zeitraum sein soll, der</em>
+<a class="jxr_linenumber" name="100" href="#100">100</a> <em class="jxr_javadoccomment">	 * vor die aktuellen Daten gemischt werden soll. Der Zeitraum wird als "Zeitspanne" oder als "Anzahl Datensätze" angegeben. &lt;/br&gt; Ist kein Archivsystem</em>
+<a class="jxr_linenumber" name="101" href="#101">101</a> <em class="jxr_javadoccomment">	 * vorhanden oder bei der Archivanfrage tritt ein Fehler auf, werden nur die aktuellen Daten zurückgegeben.</em>
+<a class="jxr_linenumber" name="102" href="#102">102</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="103" href="#103">103</a> <em class="jxr_javadoccomment">	 * @param receiver        Objekt, das Methoden zur Verfügung stellt um den Strom aus historischen und aktuellen Daten entgegen zu nehmen</em>
+<a class="jxr_linenumber" name="104" href="#104">104</a> <em class="jxr_javadoccomment">	 * @param object          System-Objekt für die die spezifizierten Daten anzumelden sind</em>
+<a class="jxr_linenumber" name="105" href="#105">105</a> <em class="jxr_javadoccomment">	 * @param dataDescription Beschreibende Informationen zu den anzumeldenden Daten</em>
+<a class="jxr_linenumber" name="106" href="#106">106</a> <em class="jxr_javadoccomment">	 * @param options         Für die Anmeldung zu verwendende Optionen</em>
+<a class="jxr_linenumber" name="107" href="#107">107</a> <em class="jxr_javadoccomment">	 * @param historyType     &lt;code&gt;HistoryTypeParameter.TIME&lt;/code&gt; = Der Parameter &lt;code&gt;history&lt;/code&gt; bezieht sich auf einen Zeitraum, der vor den aktuellen</em>
+<a class="jxr_linenumber" name="108" href="#108">108</a> <em class="jxr_javadoccomment">	 *                        Daten liegen soll (in ms); &lt;code&gt;HistoryTypeParameter.INDEX&lt;/code&gt; = Der Parameter &lt;code&gt;history&lt;/code&gt; bezieht sich auf die Anzahl</em>
+<a class="jxr_linenumber" name="109" href="#109">109</a> <em class="jxr_javadoccomment">	 *                        Datensätze, die mindestens vor den aktuellen Daten liegen sollen</em>
+<a class="jxr_linenumber" name="110" href="#110">110</a> <em class="jxr_javadoccomment">	 * @param history         Zeitraum der Archivdaten in Millisekunden, die vor den ersten aktuellen Datensätzen liegen</em>
+<a class="jxr_linenumber" name="111" href="#111">111</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="112" href="#112">112</a> 	<strong class="jxr_keyword">void</strong> subscribeReceiver(
+<a class="jxr_linenumber" name="113" href="#113">113</a> 			DatasetReceiverInterface receiver,
+<a class="jxr_linenumber" name="114" href="#114">114</a> 			SystemObject object,
+<a class="jxr_linenumber" name="115" href="#115">115</a> 			DataDescription dataDescription,
+<a class="jxr_linenumber" name="116" href="#116">116</a> 			ReceiveOptions options,
+<a class="jxr_linenumber" name="117" href="#117">117</a> 			HistoryTypeParameter historyType,
+<a class="jxr_linenumber" name="118" href="#118">118</a> 			<strong class="jxr_keyword">long</strong> history);
+<a class="jxr_linenumber" name="119" href="#119">119</a> 
+<a class="jxr_linenumber" name="120" href="#120">120</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="121" href="#121">121</a> <em class="jxr_javadoccomment">	 * Die Implementation dieser Methode meldet einen Empfänger ab, der mit der Methode {@link ArchiveRequestManager#subscribeReceiver} angemeldet wurde.</em>
+<a class="jxr_linenumber" name="122" href="#122">122</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="123" href="#123">123</a> <em class="jxr_javadoccomment">	 * @param receiver</em>
+<a class="jxr_linenumber" name="124" href="#124">124</a> <em class="jxr_javadoccomment">	 * @param object          System-Objekt für die die spezifizierten Daten angemeldet wurden</em>
+<a class="jxr_linenumber" name="125" href="#125">125</a> <em class="jxr_javadoccomment">	 * @param dataDescription Beschreibende Informationen zu den angemeldeten Daten</em>
+<a class="jxr_linenumber" name="126" href="#126">126</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="127" href="#127">127</a> 	<strong class="jxr_keyword">void</strong> unsubscribeReceiver(
+<a class="jxr_linenumber" name="128" href="#128">128</a> 			DatasetReceiverInterface receiver, <a href="../../../../../../de/bsvrz/dav/daf/main/config/SystemObject.html">SystemObject</a> object, <a href="../../../../../../de/bsvrz/dav/daf/main/DataDescription.html">DataDescription</a> dataDescription);
+<a class="jxr_linenumber" name="129" href="#129">129</a> 
+<a class="jxr_linenumber" name="130" href="#130">130</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="131" href="#131">131</a> <em class="jxr_javadoccomment">	 * Start einer Archivinformationsanfrage an das Archivsystem. Diese Methode wird von einer Applikation aufgerufen, um eine Archivinformationsanfrage an das</em>
+<a class="jxr_linenumber" name="132" href="#132">132</a> <em class="jxr_javadoccomment">	 * Archivsystem zu starten. Eine Implementierung dieser Methode sollte ohne zu blockieren ein Objekt zurückliefern über das asynchron auf das Ergebnis der</em>
+<a class="jxr_linenumber" name="133" href="#133">133</a> <em class="jxr_javadoccomment">	 * Anfrage zugegriffen werden kann.</em>
+<a class="jxr_linenumber" name="134" href="#134">134</a> <em class="jxr_javadoccomment">	 * &lt;p/&gt;</em>
+<a class="jxr_linenumber" name="135" href="#135">135</a> <em class="jxr_javadoccomment">	 * Das Ergebnisobjekt beinhaltet eine Liste von Objekten. Diese Objekte geben unter anderem ein Objekt vom Typ &lt;code&gt;ArchiveDataSpecification&lt;/code&gt; zurück.</em>
+<a class="jxr_linenumber" name="136" href="#136">136</a> <em class="jxr_javadoccomment">	 * Diese Objekte sind Referenzen auf Einträge des Übergabeparameters &lt;code&gt;specs&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="137" href="#137">137</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="138" href="#138">138</a> <em class="jxr_javadoccomment">	 * @param specs Liste mit Spezifikationen der Archivdaten zu denen Informationen gewünscht werden</em>
+<a class="jxr_linenumber" name="139" href="#139">139</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="140" href="#140">140</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt über das asynchron auf die gewünschten Informationen zugegriffen werden kann.</em>
+<a class="jxr_linenumber" name="141" href="#141">141</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="142" href="#142">142</a> <em class="jxr_javadoccomment">	 * @throws IllegalStateException Das Archivsystem ist nicht erreichbar.</em>
+<a class="jxr_linenumber" name="143" href="#143">143</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="144" href="#144">144</a> 	ArchiveInfoQueryResult requestInfo(List&lt;ArchiveDataSpecification&gt; specs) <strong class="jxr_keyword">throws</strong> IllegalStateException;
+<a class="jxr_linenumber" name="145" href="#145">145</a> 
+<a class="jxr_linenumber" name="146" href="#146">146</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="147" href="#147">147</a> <em class="jxr_javadoccomment">	 * Beauftragt das Archivsystem Archivdaten der Sicherung {@link de.bsvrz.dav.daf.main.impl.archive.filesaver.ArchiveFileSaver} zu übergeben. Eine Applikation</em>
+<a class="jxr_linenumber" name="148" href="#148">148</a> <em class="jxr_javadoccomment">	 * ruft diese Methode auf, um alle Archivdaten, die gesichert werden können, zu sichern. Eine Implementierung dieser Methode sollte ohne zu blockieren ein</em>
+<a class="jxr_linenumber" name="149" href="#149">149</a> <em class="jxr_javadoccomment">	 * Objekt zurückliefern über das asynchron auf das Ergebnis der Anfrage zugegriffen werden kann.</em>
+<a class="jxr_linenumber" name="150" href="#150">150</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="151" href="#151">151</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="152" href="#152">152</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="153" href="#153">153</a> <em class="jxr_javadoccomment">	 * @throws IllegalStateException Das Archivsystem ist nicht erreichbar.</em>
+<a class="jxr_linenumber" name="154" href="#154">154</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="155" href="#155">155</a> 	ArchiveQueryResult savePersistentData() <strong class="jxr_keyword">throws</strong> IllegalStateException;
+<a class="jxr_linenumber" name="156" href="#156">156</a> 
+<a class="jxr_linenumber" name="157" href="#157">157</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="158" href="#158">158</a> <em class="jxr_javadoccomment">	 * Start der Wiederherstellung von Datensätzen, die der Sicherung übergeben wurden (siehe {@link ArchiveRequestManager#savePersistentData()}). Diese Methode</em>
+<a class="jxr_linenumber" name="159" href="#159">159</a> <em class="jxr_javadoccomment">	 * wird von einer Applikation aufgerufen, die Datensätze benötgt, die sich nicht im direkten Zugriff des Archivsystems befinden, sondern bereits der Sicherung</em>
+<a class="jxr_linenumber" name="160" href="#160">160</a> <em class="jxr_javadoccomment">	 * übergeben wurden und später gelöscht wurden (siehe {@link ArchiveRequestManager#deleteDataSimulationVariant}, {@link ArchiveRequestManager#deleteData}).</em>
+<a class="jxr_linenumber" name="161" href="#161">161</a> <em class="jxr_javadoccomment">	 * Eine Implementierung dieser Methode sollte ohne zu blockieren ein Objekt zurückliefern über das asynchron auf das Ergebnis des Auftrags zugegriffen werden</em>
+<a class="jxr_linenumber" name="162" href="#162">162</a> <em class="jxr_javadoccomment">	 * kann.</em>
+<a class="jxr_linenumber" name="163" href="#163">163</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="164" href="#164">164</a> <em class="jxr_javadoccomment">	 * @param requiredData Eine Liste von Zeitbereichen/Indexbereichen, die Wiederhergestellt werden müssen.</em>
+<a class="jxr_linenumber" name="165" href="#165">165</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="166" href="#166">166</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="167" href="#167">167</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="168" href="#168">168</a> <em class="jxr_javadoccomment">	 * @throws IllegalStateException Das Archivsystem ist nicht erreichbar.</em>
+<a class="jxr_linenumber" name="169" href="#169">169</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="170" href="#170">170</a> 	ArchiveQueryResult restorePersistentData(List&lt;ArchiveInformationResult&gt; requiredData) <strong class="jxr_keyword">throws</strong> IllegalStateException;
+<a class="jxr_linenumber" name="171" href="#171">171</a> 
+<a class="jxr_linenumber" name="172" href="#172">172</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="173" href="#173">173</a> <em class="jxr_javadoccomment">	 * Beauftragt das Archivsystem Archivdaten, die zu einer Simulation gehören, aus dem Archivsystem zu löschen. Der Löschauftrag bezieht sich dabei nicht auf</em>
+<a class="jxr_linenumber" name="174" href="#174">174</a> <em class="jxr_javadoccomment">	 * Datensätze, die bereits der Sicherung übergeben wurden und von dieser verwaltet werden (siehe {@link ArchiveRequestManager#savePersistentData()}). Die</em>
+<a class="jxr_linenumber" name="175" href="#175">175</a> <em class="jxr_javadoccomment">	 * Methode wird von einer Applikation aufgerufen, um nicht mehr benötigte Datensätze, die zu einer Simulation gehören, aus dem Archivsystem zu löschen.</em>
+<a class="jxr_linenumber" name="176" href="#176">176</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="177" href="#177">177</a> <em class="jxr_javadoccomment">	 * @param simulationVariant Simulationsvariante, ganzzahliger Wert zwischen 1,...,999</em>
+<a class="jxr_linenumber" name="178" href="#178">178</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="179" href="#179">179</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt, über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="180" href="#180">180</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="181" href="#181">181</a> <em class="jxr_javadoccomment">	 * @throws IllegalStateException Das Archivsystem ist nicht erreichbar.</em>
+<a class="jxr_linenumber" name="182" href="#182">182</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="183" href="#183">183</a> 	ArchiveQueryResult deleteDataSimulationVariant(<strong class="jxr_keyword">short</strong> simulationVariant) <strong class="jxr_keyword">throws</strong> IllegalStateException;
+<a class="jxr_linenumber" name="184" href="#184">184</a> 
+<a class="jxr_linenumber" name="185" href="#185">185</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="186" href="#186">186</a> <em class="jxr_javadoccomment">	 * Beauftragt das Archivsystem den Löschzeitpunkt der angegebenen Zeitbereiche zu verlängern. Die Methode wird von einer Applikation aufgerufen, um benötigte</em>
+<a class="jxr_linenumber" name="187" href="#187">187</a> <em class="jxr_javadoccomment">	 * Zeitbereiche länger als vorgesehen im direkten Zugriff des Archivsystems zu halten.</em>
+<a class="jxr_linenumber" name="188" href="#188">188</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="189" href="#189">189</a> <em class="jxr_javadoccomment">	 * @param requiredData Zeitbereiche, die länger im direkten Zugriff des Archivsystems bleiben sollen</em>
+<a class="jxr_linenumber" name="190" href="#190">190</a> <em class="jxr_javadoccomment">	 * @param timePeriod   Zeitspanne, die die ausgewählten Daten länger im direkten Zugriff des Archivsystem bleiben sollen (in ms)</em>
+<a class="jxr_linenumber" name="191" href="#191">191</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="192" href="#192">192</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt, über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="193" href="#193">193</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="194" href="#194">194</a> 	ArchiveQueryResult increaseDeleteTime(List&lt;ArchiveInformationResult&gt; requiredData, <strong class="jxr_keyword">long</strong> timePeriod);
+<a class="jxr_linenumber" name="195" href="#195">195</a> 
+<a class="jxr_linenumber" name="196" href="#196">196</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="197" href="#197">197</a> <em class="jxr_javadoccomment">	 * Beauftragt das Archivsystem die angegebenen Zeitbereiche ohne Rücksicht auf den mit {@link ArchiveRequestManager#increaseDeleteTime} festgelegten Wert zu</em>
+<a class="jxr_linenumber" name="198" href="#198">198</a> <em class="jxr_javadoccomment">	 * löschen. Das Löschen der Zeitbereiche wird dabei in zwei Varianten unterteilt. In der ersten Variante werden die Zeitbereiche umgehend aus dem direkten</em>
+<a class="jxr_linenumber" name="199" href="#199">199</a> <em class="jxr_javadoccomment">	 * Zugriff des Archivsystems entfernt. In der zweiten Variante werden die Zeitbereiche nur als "zu löschend" markiert, sobald das "automatische Löschen" des</em>
+<a class="jxr_linenumber" name="200" href="#200">200</a> <em class="jxr_javadoccomment">	 * Archivsystems angstoßen wird (dies geschieht zyklisch), werden die Zeitbereiche entfernt.</em>
+<a class="jxr_linenumber" name="201" href="#201">201</a> <em class="jxr_javadoccomment">	 * &lt;p/&gt;</em>
+<a class="jxr_linenumber" name="202" href="#202">202</a> <em class="jxr_javadoccomment">	 * Bei allen Löschoperationen, die durch diesen Methodenaufruf ausgelöst werden, muss darauf geachtete werden, dass der Vorhaltezeitraum der Zeitbereiche</em>
+<a class="jxr_linenumber" name="203" href="#203">203</a> <em class="jxr_javadoccomment">	 * abgelaufen sein muss und das die Zeitbereiche gesichert wurden, falls diese gesichert werden sollten. Wird gegen eine diese Forderungen verstossen, wird der</em>
+<a class="jxr_linenumber" name="204" href="#204">204</a> <em class="jxr_javadoccomment">	 * angegebene Zeitbereich nicht gelöscht.</em>
+<a class="jxr_linenumber" name="205" href="#205">205</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="206" href="#206">206</a> <em class="jxr_javadoccomment">	 * @param dataDisposedToDelete Zeitbereich(e), die gelöscht werden sollen</em>
+<a class="jxr_linenumber" name="207" href="#207">207</a> <em class="jxr_javadoccomment">	 * @param deleteImmediately    true = Variante 1, die Zeitbereiche werden umgehend aus dem direkten Zugriff des Archivsystems entfernt; false = Variante 2, die</em>
+<a class="jxr_linenumber" name="208" href="#208">208</a> <em class="jxr_javadoccomment">	 *                             Zeitbereiche werden nur als "zu löschend" markiert und später aus dem direkten Zugriff des Archivsystems entfernt</em>
+<a class="jxr_linenumber" name="209" href="#209">209</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="210" href="#210">210</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt, über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="211" href="#211">211</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="212" href="#212">212</a> 	ArchiveQueryResult deleteData(List&lt;ArchiveInformationResult&gt; dataDisposedToDelete, <strong class="jxr_keyword">boolean</strong> deleteImmediately);
+<a class="jxr_linenumber" name="213" href="#213">213</a> 
+<a class="jxr_linenumber" name="214" href="#214">214</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="215" href="#215">215</a> <em class="jxr_javadoccomment">	 * Beauftragt das Archivsystem seine Informationen zu gespeicherten Daten mit einem Speichermedium Typ B {@link</em>
+<a class="jxr_linenumber" name="216" href="#216">216</a> <em class="jxr_javadoccomment">	 * de.bsvrz.dav.daf.main.impl.archive.filesaver.ArchiveFileSaver} abzugleichen. Dies kann nötig werden, wenn die eindeutigen Identifizierungen der</em>
+<a class="jxr_linenumber" name="217" href="#217">217</a> <em class="jxr_javadoccomment">	 * Speichermedien von Typ B durch die Sicherung geändert wurden (Beispiel: Die Daten wurden vorher auf CD gespeichert, nun werden die Daten auf DVD gespeichert</em>
+<a class="jxr_linenumber" name="218" href="#218">218</a> <em class="jxr_javadoccomment">	 * und die alten Datenbestände auf DVD umkopiert, somit fallen mehrere CD´s auf eine DVD und die eindeutigen Identifizierungen der CD´s sind nutzlos. Die</em>
+<a class="jxr_linenumber" name="219" href="#219">219</a> <em class="jxr_javadoccomment">	 * eindeutigen Identifizierungen der CD´s wurde aber vom Archivsystem gespeichert und müssen folglich abgeglichen werden).</em>
+<a class="jxr_linenumber" name="220" href="#220">220</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="221" href="#221">221</a> <em class="jxr_javadoccomment">	 * @param volumeIdTypB Eindeutige Identifikation eines Speichermediums Typ B</em>
+<a class="jxr_linenumber" name="222" href="#222">222</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="223" href="#223">223</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt, über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="224" href="#224">224</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="225" href="#225">225</a> 	ArchiveQueryResult archiveFileSaverAlignment(<strong class="jxr_keyword">int</strong> volumeIdTypB);
+<a class="jxr_linenumber" name="226" href="#226">226</a> 
+<a class="jxr_linenumber" name="227" href="#227">227</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="228" href="#228">228</a> <em class="jxr_javadoccomment">	 * Stellt fest ob das Archivsystem über den Datenverteiler derzeit erreichbar ist. Eine positive/negative Antwort ist keine Garantie, dass dieser Zustand auch</em>
+<a class="jxr_linenumber" name="229" href="#229">229</a> <em class="jxr_javadoccomment">	 * in Zukunft gültig ist/bleibt.</em>
+<a class="jxr_linenumber" name="230" href="#230">230</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="231" href="#231">231</a> <em class="jxr_javadoccomment">	 * @return true = Das Archivsystem ist derzeit erreichbar, es können alle im Interface spezifizierten Methoden benutzt werden; false = Das Archivsystem ist</em>
+<a class="jxr_linenumber" name="232" href="#232">232</a> <em class="jxr_javadoccomment">	 *         derzeit nicht erreichbar</em>
+<a class="jxr_linenumber" name="233" href="#233">233</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="234" href="#234">234</a> 	<strong class="jxr_keyword">boolean</strong> isArchiveAvailable();
+<a class="jxr_linenumber" name="235" href="#235">235</a> 
+<a class="jxr_linenumber" name="236" href="#236">236</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="237" href="#237">237</a> <em class="jxr_javadoccomment">	 * Das übergebene Objekt &lt;code&gt;listener&lt;/code&gt; wird benachrichtigt sobald sich die Erreichbarkeit des Archivsystems über den Datenverteiler ändert.</em>
+<a class="jxr_linenumber" name="238" href="#238">238</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="239" href="#239">239</a> <em class="jxr_javadoccomment">	 * @param listener Objekt, das benutzt wird um Änderungen der Erreichbarkeit des Archivsystems über den Datenverteiler anzuzeigen</em>
+<a class="jxr_linenumber" name="240" href="#240">240</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="241" href="#241">241</a> 	<strong class="jxr_keyword">void</strong> addArchiveAvailabilityListener(<a href="../../../../../../de/bsvrz/dav/daf/main/archive/ArchiveAvailabilityListener.html">ArchiveAvailabilityListener</a> listener);
+<a class="jxr_linenumber" name="242" href="#242">242</a> 
+<a class="jxr_linenumber" name="243" href="#243">243</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="244" href="#244">244</a> <em class="jxr_javadoccomment">	 * Das Objekt, das mit {@link #addArchiveAvailabilityListener} übergeben wurde, wird nicht mehr benachrichtigt sobald sich die Erreichbarkeit des Archivsystems</em>
+<a class="jxr_linenumber" name="245" href="#245">245</a> <em class="jxr_javadoccomment">	 * über den Datenverteiler ändert.</em>
+<a class="jxr_linenumber" name="246" href="#246">246</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="247" href="#247">247</a> <em class="jxr_javadoccomment">	 * @param listener Objekt, das nicht mehr benachrichtigt werden soll, wenn sich die Erreichbarkeit des Archivsystems über den Datenverteiler ändert</em>
+<a class="jxr_linenumber" name="248" href="#248">248</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="249" href="#249">249</a> 	<strong class="jxr_keyword">void</strong> removeArchiveAvailabilityListener(<a href="../../../../../../de/bsvrz/dav/daf/main/archive/ArchiveAvailabilityListener.html">ArchiveAvailabilityListener</a> listener);
+<a class="jxr_linenumber" name="250" href="#250">250</a> 
+<a class="jxr_linenumber" name="251" href="#251">251</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="252" href="#252">252</a> <em class="jxr_javadoccomment">	 * Beauftragt das Archivsystem fehlende Daten von anderen Archivsystemen anzufordern und diese dann als "nachgefordert" zu speichern und bei Archivanfragen zur</em>
+<a class="jxr_linenumber" name="253" href="#253">253</a> <em class="jxr_javadoccomment">	 * Verfügung zu stellen.</em>
+<a class="jxr_linenumber" name="254" href="#254">254</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="255" href="#255">255</a> <em class="jxr_javadoccomment">	 * @param requiredData      Datenidentifikation(en), die nachgefordert werden sollen. Jede Datenidentifikation speichert zusätlich den Zeitbereich, in dem</em>
+<a class="jxr_linenumber" name="256" href="#256">256</a> <em class="jxr_javadoccomment">	 *                          Daten zu dieser Datenidentifikation angefordert werden soll. Es muss mindestens eine Datenidentifikation vorhanden sein.</em>
+<a class="jxr_linenumber" name="257" href="#257">257</a> <em class="jxr_javadoccomment">	 * @param requestedArchives Archivsystem(e), bei denen Daten angefordert werden. Ist diese Liste leer werden alle Archivsystem angefragt, die beim</em>
+<a class="jxr_linenumber" name="258" href="#258">258</a> <em class="jxr_javadoccomment">	 *                          automatischen Nachfordern angefragt werden.</em>
+<a class="jxr_linenumber" name="259" href="#259">259</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="260" href="#260">260</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt, über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="261" href="#261">261</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="262" href="#262">262</a> 	ArchiveQueryResult requestData(Collection&lt;ArchiveInformationResult&gt; requiredData, Collection&lt;SystemObject&gt; requestedArchives);
+<a class="jxr_linenumber" name="263" href="#263">263</a> 
+<a class="jxr_linenumber" name="264" href="#264">264</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="265" href="#265">265</a> <em class="jxr_javadoccomment">	 * Beauftragt das Archivsystem fehlende Daten von anderen Archivsystemen anzufordern und diese dann als "nachgefordert" zu speichern und bei Archivanfragen zur</em>
+<a class="jxr_linenumber" name="266" href="#266">266</a> <em class="jxr_javadoccomment">	 * Verfügung zu stellen. Es werden alle Datenidentifikationen angefragt, die auch beim automatischen Nachfordern angefragt werden.</em>
+<a class="jxr_linenumber" name="267" href="#267">267</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="268" href="#268">268</a> <em class="jxr_javadoccomment">	 * @param startTime         Startzeitpunkt, ab dem Daten nachgefordert werden</em>
+<a class="jxr_linenumber" name="269" href="#269">269</a> <em class="jxr_javadoccomment">	 * @param endTime           Endzeitpunkt, bis zu dem Daten nachgefordert werden</em>
+<a class="jxr_linenumber" name="270" href="#270">270</a> <em class="jxr_javadoccomment">	 * @param requestedArchives Archivsysteme die angefragt werden. Ist die Liste leer werden alle Archivsysteme angefragt, die beim automatischen Nachfordern</em>
+<a class="jxr_linenumber" name="271" href="#271">271</a> <em class="jxr_javadoccomment">	 *                          angefragt werden</em>
+<a class="jxr_linenumber" name="272" href="#272">272</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="273" href="#273">273</a> <em class="jxr_javadoccomment">	 * @return Ergebnisobjekt, über das Informationen über den Zustand des Auftrags abgefragt werden können</em>
+<a class="jxr_linenumber" name="274" href="#274">274</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="275" href="#275">275</a> 	ArchiveQueryResult requestData(<strong class="jxr_keyword">long</strong> startTime, <strong class="jxr_keyword">long</strong> endTime, Collection&lt;SystemObject&gt; requestedArchives);
+<a class="jxr_linenumber" name="276" href="#276">276</a> }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+
