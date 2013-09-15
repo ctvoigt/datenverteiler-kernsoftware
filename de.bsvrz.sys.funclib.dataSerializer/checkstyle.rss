@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>Sys Funktionsbibliothek Data Serializer - Checkstyle report</title>
+    <link>http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer</link>
+    <description>Sys Funktionsbibliothek Data Serializer - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2013 NERZ e.V.</copyright>
+    <item>
+      <title>File: 7,
+             Errors: 0,
+             Warnings: 5,
+             Infos: 0
+      </title>
+            <link>http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html#de.bsvrz.sys.funclib.dataSerializer.Serializer.java">de/bsvrz/sys/funclib/dataSerializer/Serializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html#de.bsvrz.sys.funclib.dataSerializer.PackageRuntimeInfo.java">de/bsvrz/sys/funclib/dataSerializer/PackageRuntimeInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html#de.bsvrz.sys.funclib.dataSerializer.SerializerImplementationA.java">de/bsvrz/sys/funclib/dataSerializer/SerializerImplementationA.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html#de.bsvrz.sys.funclib.dataSerializer.Deserializer.java">de/bsvrz/sys/funclib/dataSerializer/Deserializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html#de.bsvrz.sys.funclib.dataSerializer.DeserializerImplementationA.java">de/bsvrz/sys/funclib/dataSerializer/DeserializerImplementationA.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html#de.bsvrz.sys.funclib.dataSerializer.SerializingFactory.java">de/bsvrz/sys/funclib/dataSerializer/SerializingFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.dataSerializer/checkstyle.html#de.bsvrz.sys.funclib.dataSerializer.NoSuchVersionException.java">de/bsvrz/sys/funclib/dataSerializer/NoSuchVersionException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

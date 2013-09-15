@@ -1,1 +1,7 @@
-/* You can override this file with your own styles */
+#leftColumn {
+  width: 350px;
+}
+
+#bodyColumn {
+  margin-left: 377px;
+}

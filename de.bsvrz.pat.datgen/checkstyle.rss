@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>PAT Datengenerator - Checkstyle report</title>
+    <link>http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen</link>
+    <description>PAT Datengenerator - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2013 NERZ e.V.</copyright>
+    <item>
+      <title>File: 7,
+             Errors: 0,
+             Warnings: 16,
+             Infos: 0
+      </title>
+            <link>http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html#de.bsvrz.pat.datgen.PackageRuntimeInfo.java">de/bsvrz/pat/datgen/PackageRuntimeInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html#de.bsvrz.pat.datgen.generator.main.DataGenerator.java">de/bsvrz/pat/datgen/generator/main/DataGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html#de.bsvrz.pat.datgen.generator.xmlParser.SaxHandler.java">de/bsvrz/pat/datgen/generator/xmlParser/SaxHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html#de.bsvrz.pat.datgen.generator.main.SendInterface.java">de/bsvrz/pat/datgen/generator/main/SendInterface.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html#de.bsvrz.pat.datgen.generator.xmlParser.XmlFormatReader.java">de/bsvrz/pat/datgen/generator/xmlParser/XmlFormatReader.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html#de.bsvrz.pat.datgen.generator.xmlParser.ValidityChecker.java">de/bsvrz/pat/datgen/generator/xmlParser/ValidityChecker.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.pat.datgen/checkstyle.html#de.bsvrz.pat.datgen.generator.main.Queue.java">de/bsvrz/pat/datgen/generator/main/Queue.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

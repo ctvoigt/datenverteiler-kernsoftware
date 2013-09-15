@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>Sys Funktionsbibliothek XML Support - Checkstyle report</title>
+    <link>http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport</link>
+    <description>Sys Funktionsbibliothek XML Support - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2013 NERZ e.V.</copyright>
+    <item>
+      <title>File: 14,
+             Errors: 0,
+             Warnings: 1,
+             Infos: 0
+      </title>
+            <link>http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.SilentContentHandler.java">de/bsvrz/sys/funclib/xmlSupport/SilentContentHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.EndOfInputEvent.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/EndOfInputEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.StartElementEvent.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/StartElementEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.CountingErrorHandler.java">de/bsvrz/sys/funclib/xmlSupport/CountingErrorHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.EventType.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/EventType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.DebuggingContentHandler.java">de/bsvrz/sys/funclib/xmlSupport/DebuggingContentHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.CharactersEvent.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/CharactersEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.EndElementEvent.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/EndElementEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.PackageRuntimeInfo.java">de/bsvrz/sys/funclib/xmlSupport/PackageRuntimeInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.Event.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/Event.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.PullableEventStream.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/PullableEventStream.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.IgnorableCharactersEvent.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/IgnorableCharactersEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.SaxPullAdapter.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/SaxPullAdapter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://falkoschumann.github.io/datenverteiler-kernsoftware/de.bsvrz.sys.funclib.xmlSupport/checkstyle.html#de.bsvrz.sys.funclib.xmlSupport.saxPullAdapter.AttributeMap.java">de/bsvrz/sys/funclib/xmlSupport/saxPullAdapter/AttributeMap.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
